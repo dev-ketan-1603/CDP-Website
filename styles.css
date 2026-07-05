@@ -1437,115 +1437,383 @@ body.projector-wide .accordion-panel p{
   .progress-steps{ grid-template-columns: 1fr; }
 }
 
-.submit-modal{
+/* ==========================================================================
+   CERTIFICATE SUBMISSION MODAL
+   ========================================================================== */
 
-position:fixed;
+.submission-modal{
+  position: fixed; inset: 0; z-index: 99999;
+  display: none; justify-content: center; align-items: center;
+  padding: 30px;
+}
 
-top:0;
-left:0;
+.submission-modal.active{ display: flex; animation: fadeIn .25s var(--ease); }
 
-width:100%;
-height:100%;
+.submission-overlay{
+  position: absolute; inset: 0;
+  background: var(--ink);
+  opacity: .82;
+}
 
-background:rgba(0,0,0,.6);
+.submission-container{
+  position: relative;
+  width: min(620px, 95vw);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--paper);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  box-shadow: var(--shadow-hard);
+  animation: popup .35s var(--ease);
+}
 
-display:none;
+.submission-container::before{
+  content: "";
+  position: absolute; top: 0; left: 0; width: 100%; height: 8px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--volt), var(--volt) 12px,
+    var(--riot) 12px, var(--riot) 24px
+  );
+}
 
-justify-content:center;
+.submission-header{
+  padding: 40px 40px 28px;
+  text-align: center;
+  border-bottom: 2px solid var(--ink);
+}
 
-align-items:center;
+.submission-icon{
+  width: 74px; height: 74px; margin: auto; margin-bottom: 18px;
+  display: grid; place-items: center;
+  font-size: 28px;
+  color: var(--ink);
+  background: var(--volt);
+  border: 2px solid var(--ink);
+  box-shadow: var(--shadow-hard-sm);
+  transform: rotate(-4deg);
+}
 
-z-index:99999;
+.submission-header h2{
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -.5px;
+}
 
-backdrop-filter:blur(12px);
+.submission-header p{
+  opacity: .75;
+  line-height: 1.6;
+  font-size: .96rem;
+}
+
+#certificateForm{
+  padding: 35px 40px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.form-row{ display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+.form-group{ display: flex; flex-direction: column; gap: 8px; }
+
+.form-group label{
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  display: flex; align-items: center; gap: 10px;
+}
+
+.form-group label i{ color: var(--signal); width: 16px; }
+
+.form-group input,
+.form-group select{
+  height: 52px;
+  padding: 0 16px;
+  background: var(--paper);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  outline: none;
+  transition: .2s var(--ease);
+}
+
+.form-group input::placeholder{ color: var(--ink); opacity: .35; }
+
+.form-group input:focus,
+.form-group select:focus{
+  box-shadow: var(--shadow-hard-sm);
+  transform: translate(-2px, -2px);
+}
+
+.hint{ font-family: var(--font-mono); font-size: .72rem; opacity: .55; }
+
+.file-drop{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+  padding: 26px 16px;
+  border: 2px dashed var(--ink);
+  background: var(--paper);
+  cursor: pointer;
+  transition: .2s var(--ease);
+}
+
+.file-drop i{ font-size: 1.5rem; color: var(--signal); }
+
+.file-drop-text{
+  font-family: var(--font-mono);
+  font-size: .82rem;
+  font-weight: 600;
+  word-break: break-all;
+}
+
+.file-drop-hint{ font-family: var(--font-mono); font-size: .68rem; opacity: .55; }
+
+.file-drop:hover{ box-shadow: var(--shadow-hard-sm); transform: translate(-2px, -2px); }
+
+.file-drop.dragover{
+  border-style: solid;
+  border-color: var(--signal);
+  box-shadow: var(--shadow-hard-sm);
+  transform: translate(-2px, -2px);
+}
+
+.file-drop.has-file{ border-style: solid; border-color: var(--volt); }
+.file-drop.has-file i{ color: var(--ink); }
+
+.file-drop.error{
+  border-color: var(--riot) !important;
+  box-shadow: 4px 4px 0 var(--riot) !important;
+  animation: shake .3s;
+}
+
+.confirm-box{
+  display: flex; gap: 14px; align-items: flex-start;
+  cursor: pointer; font-size: .92rem; line-height: 1.5; user-select: none;
+}
+
+.confirm-box input{ margin-top: 5px; transform: scale(1.2); accent-color: var(--volt); }
+
+.submission-buttons{ display: flex; gap: 16px; margin-top: 10px; }
+
+.submission-buttons button{
+  flex: 1; height: 56px;
+  border: 2px solid var(--ink);
+  font-family: var(--font-display);
+  font-size: 15px; font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow-hard-sm);
+  transition: .2s var(--ease);
+}
+
+.submission-buttons button:hover{ transform: translate(-3px, -3px); box-shadow: var(--shadow-hard); }
+.submission-buttons button:active{ transform: translate(0, 0); box-shadow: 2px 2px 0 var(--ink); }
+
+.btn-secondary{ background: var(--paper); color: var(--ink); }
+
+.btn-primary{ background: var(--volt); color: var(--ink); }
+
+.btn-loader{ display: none; }
+
+.btn-primary.loading .btn-text{ display: none; }
+
+.btn-primary.loading .btn-loader{
+  display: inline-flex; gap: 10px; align-items: center; justify-content: center;
+}
+
+.submission-close{
+  position: absolute; top: 18px; right: 18px;
+  width: 42px; height: 42px;
+  border: 2px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  transition: .2s var(--ease);
+  z-index: 10;
+}
+
+.submission-close:hover{ background: var(--riot); color: var(--paper); transform: rotate(90deg); }
+
+.submission-success{ display: none; padding: 60px 40px; text-align: center; }
+
+.submission-success.active{ display: block; animation: fadeIn .3s var(--ease); }
+
+.success-circle{
+  width: 96px; height: 96px; margin: auto; margin-bottom: 25px;
+  display: grid; place-items: center;
+  font-size: 36px;
+  color: var(--ink);
+  background: var(--volt);
+  border: 2px solid var(--ink);
+  box-shadow: var(--shadow-hard);
+  animation: popSuccess .5s var(--ease);
+}
+
+.success-circle i{ animation: tick .5s ease .15s both; }
+
+.success-circle+h2{
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  margin-bottom: 12px;
+}
+
+.success-circle+p{ opacity: .7; margin-bottom: 35px; }
+
+.error{
+  border-color: var(--riot) !important;
+  box-shadow: 4px 4px 0 var(--riot) !important;
+  animation: shake .3s;
+}
+
+@keyframes popup{
+  from{ opacity: 0; transform: translateY(40px); }
+  to{ opacity: 1; transform: none; }
+}
+
+@keyframes fadeIn{
+  from{ opacity: 0; }
+  to{ opacity: 1; }
+}
+
+@keyframes popSuccess{
+  0%{ transform: scale(.5); opacity: 0; }
+  100%{ transform: scale(1); opacity: 1; }
+}
+
+@keyframes tick{
+  from{ transform: scale(0); }
+  to{ transform: scale(1); }
+}
+
+@keyframes shake{
+  25%{ transform: translateX(-6px); }
+  50%{ transform: translateX(6px); }
+  75%{ transform: translateX(-4px); }
+}
+
+@keyframes popup{
+
+from{
+
+opacity:0;
+
+transform:translateY(60px) scale(.92);
 
 }
 
-.submit-box{
+to{
 
-width:420px;
+opacity:1;
 
-background:#111827;
-
-padding:35px;
-
-border-radius:20px;
-
-display:flex;
-
-flex-direction:column;
-
-gap:15px;
-
-box-shadow:0 0 40px rgba(0,255,255,.2);
+transform:none;
 
 }
 
-.submit-box h2{
+}
 
-margin:0;
+@keyframes fadeIn{
 
-color:white;
+from{
+
+opacity:0;
 
 }
 
-.submit-box p{
+to{
 
-color:#bbb;
-
-}
-
-.submit-box input,
-.submit-box select{
-
-padding:15px;
-
-border:none;
-
-border-radius:12px;
-
-background:#1f2937;
-
-color:white;
-
-font-size:15px;
+opacity:1;
 
 }
 
-.modal-buttons{
+}
 
-display:flex;
+@keyframes gradientMove{
 
-gap:12px;
+0%{
+
+background-position:0%;
 
 }
 
-.modal-buttons button{
+100%{
 
-flex:1;
-
-padding:15px;
-
-border:none;
-
-border-radius:12px;
-
-cursor:pointer;
-
-font-weight:bold;
+background-position:300%;
 
 }
 
-#submitCertificate{
+}
 
-background:#00ff88;
+@keyframes popSuccess{
+
+0%{
+
+transform:scale(.5);
+
+opacity:0;
 
 }
 
-#closeModal{
+100%{
 
-background:#333;
+transform:scale(1);
 
-color:white;
+opacity:1;
 
+}
+
+}
+
+@keyframes tick{
+
+from{
+
+transform:scale(0);
+
+}
+
+to{
+
+transform:scale(1);
+
+}
+
+}
+
+@keyframes shake{
+
+25%{
+
+transform:translateX(-6px);
+
+}
+
+50%{
+
+transform:translateX(6px);
+
+}
+
+75%{
+
+transform:translateX(-4px);
+
+}
+
+}
+
+@media(max-width:700px){
+  .form-row{ grid-template-columns: 1fr; }
+  .submission-container{ width: 100%; }
+  .submission-header{ padding: 30px; }
+  #certificateForm{ padding: 25px; }
+  .submission-buttons{ flex-direction: column; }
 }
