@@ -475,43 +475,296 @@
 
 <!-- Submit Certificate Modal -->
 
-<div id="submitModal" class="submit-modal">
+<!-- ==========================================================================
+     CERTIFICATE SUBMISSION MODAL
+     ========================================================================== -->
 
-<div class="submit-box">
+<div class="submission-modal" id="submissionModal">
 
-<h2>Submit Certificate</h2>
+    <div class="submission-overlay" id="submissionOverlay"></div>
 
-<p>Please enter your details below.</p>
+    <div class="submission-container">
 
-<input id="studentName" placeholder="Full Name">
+        <!-- Close -->
+        <button class="submission-close" id="closeSubmissionModal">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
 
-<select id="studentClass">
-<option value="">Select Class</option>
-<option>9</option>
-<option>11</option>
-</select>
+        <!-- Header -->
+        <div class="submission-header">
 
-<input id="studentSection" placeholder="Section">
+            <div class="submission-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
 
-<input id="studentMobile" placeholder="Mobile Number">
+            <h2>Certificate Submission</h2>
 
-<input id="studentReference" placeholder="Certificate Reference ID">
+            <p>
+                Complete this form after successfully finishing the
+                <strong>WNS CyberSmart Workshop.</strong>
+            </p>
 
-<div class="modal-buttons">
+        </div>
 
-<button id="closeModal">
-Cancel
-</button>
+        <!-- FORM -->
 
-<button id="submitCertificate">
-Submit
-</button>
+        <form id="certificateForm" autocomplete="off">
+
+            <!-- Name -->
+
+            <div class="form-group">
+
+                <label>
+                    <i class="fa-solid fa-user"></i>
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="studentName"
+                    placeholder="Enter your full name"
+                    required
+                >
+
+                <small class="error-message"></small>
+
+            </div>
+
+            <!-- CLASS -->
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>
+
+                        <i class="fa-solid fa-graduation-cap"></i>
+
+                        Class
+
+                    </label>
+
+                    <select id="studentClass" required>
+
+                        <option value="">Select Class</option>
+
+                        <option>6</option>
+
+                        <option>7</option>
+
+                        <option>8</option>
+
+                        <option>9</option>
+
+                        <option>10</option>
+
+                        <option>11</option>
+
+                        <option>12</option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+
+                        <i class="fa-solid fa-school"></i>
+
+                        Section
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="studentSection"
+                        maxlength="3"
+                        placeholder="A"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+            <!-- MOBILE -->
+
+            <div class="form-group">
+
+                <label>
+
+                    <i class="fa-solid fa-mobile-screen"></i>
+
+                    Mobile Number
+
+                </label>
+
+                <input
+                    type="tel"
+                    id="studentMobile"
+                    maxlength="10"
+                    placeholder="9876543210"
+                    required
+                >
+
+                <small class="hint">
+                    Used only for workshop verification.
+                </small>
+
+            </div>
+
+            <!-- Reference -->
+
+            <div class="form-group">
+
+                <label>
+
+                    <i class="fa-solid fa-certificate"></i>
+
+                    Certificate Reference ID
+
+                </label>
+
+                <input
+                    type="text"
+                    id="studentReference"
+                    placeholder="Example : WNS-XXXXXXX"
+                    required
+                >
+
+            </div>
+
+            <!-- CERTIFICATE FILE -->
+
+            <div class="form-group">
+
+                <label>
+                    <i class="fa-solid fa-file-pdf"></i>
+                    Certificate PDF
+                </label>
+
+                <label class="file-drop" id="fileDropLabel" for="certificateFile">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    <span class="file-drop-text" id="fileDropText">Click to upload or drag PDF here</span>
+                    <span class="file-drop-hint">PDF only &middot; max 5MB</span>
+                </label>
+
+                <input
+                    type="file"
+                    id="certificateFile"
+                    accept="application/pdf"
+                    hidden
+                >
+
+                <small class="hint">
+                    Upload the certificate you downloaded from the WNS portal.
+                </small>
+
+            </div>
+
+            <!-- CHECK -->
+
+            <label class="confirm-box">
+
+                <input
+                    type="checkbox"
+                    id="confirmCompletion"
+                >
+
+                <span class="checkmark"></span>
+
+                I confirm that I have successfully completed all
+                WNS CyberSmart modules and quizzes.
+
+            </label>
+
+            <!-- BUTTONS -->
+
+            <div class="submission-buttons">
+
+                <button
+                    type="button"
+                    class="btn-secondary"
+                    id="cancelSubmission"
+                >
+
+                    Cancel
+
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn-primary"
+                    id="submitCertificateBtn"
+                >
+
+                    <span class="btn-text">
+
+                        Submit Certificate
+
+                    </span>
+
+                    <span class="btn-loader">
+
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+
+                        Uploading...
+
+                    </span>
+
+                </button>
+
+            </div>
+
+        </form>
+
+        <!-- SUCCESS SCREEN -->
+
+        <div
+            class="submission-success"
+            id="submissionSuccess"
+        >
+
+            <div class="success-circle">
+
+                <i class="fa-solid fa-check"></i>
+
+            </div>
+
+            <h2>Submission Successful</h2>
+
+            <p>
+
+                Your certificate details have been recorded successfully.
+
+            </p>
+
+            <button
+                class="btn-primary"
+                id="successDoneBtn"
+            >
+
+                Continue
+
+            </button>
+
+        </div>
+
+    </div>
 
 </div>
 
-</div>
 
-</div>
+
+
+
+
+
+
+
+
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
