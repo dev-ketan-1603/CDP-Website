@@ -684,78 +684,355 @@ document.getElementById('certificateAction')?.addEventListener('click', () => la
   }
 })();
 
-const SCRIPT_URL="https://script.google.com/macros/s/AKfycbwRpGuU0tmURimcxYCvWsojWD1IP_5ysrRq7CPm_dCRo-sC632ufDpcQ4UBygt_hPKewg/exec";
+/* ==========================================================================
+   CERTIFICATE SUBMISSION SYSTEM
+   ========================================================================== */
 
-const modal=document.getElementById("submitModal");
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwA4l_MsWl8nNzQQm3Bh96xziEjWDjq_J3FtzUaoPMHtlgMtq8z5X-_GMwlEOuVWK5T5Q/exec";
 
-document.getElementById("certificateAction")
-.addEventListener("click",(e)=>{
+const submissionModal = document.getElementById("submissionModal");
+const submissionOverlay = document.getElementById("submissionOverlay");
+const openSubmissionBtn = document.getElementById("certificateAction");
+const closeSubmissionBtn = document.getElementById("closeSubmissionModal");
+const cancelSubmissionBtn = document.getElementById("cancelSubmission");
 
-e.preventDefault();
+const form = document.getElementById("certificateForm");
 
-modal.style.display="flex";
+const submitBtn = document.getElementById("submitCertificateBtn");
 
+const successScreen = document.getElementById("submissionSuccess");
+
+const doneBtn = document.getElementById("successDoneBtn");
+
+const fileInput = document.getElementById("certificateFile");
+const fileDropLabel = document.getElementById("fileDropLabel");
+const fileDropText = document.getElementById("fileDropText");
+
+const MAX_FILE_MB = 5;
+const DEFAULT_FILE_TEXT = "Click to upload or drag PDF here";
+
+/* ===============================
+   FILE DROPZONE
+================================*/
+
+function setSelectedFile(file){
+    if(file){
+        fileDropLabel.classList.add("has-file");
+        fileDropLabel.classList.remove("error");
+        fileDropText.textContent = file.name;
+    } else {
+        fileDropLabel.classList.remove("has-file");
+        fileDropText.textContent = DEFAULT_FILE_TEXT;
+    }
+}
+
+fileInput.addEventListener("change", ()=>{
+    setSelectedFile(fileInput.files[0]);
 });
 
-document.getElementById("closeModal")
-.addEventListener("click",()=>{
-
-modal.style.display="none";
-
+["dragover","dragleave","drop"].forEach(evtName=>{
+    fileDropLabel.addEventListener(evtName, (e)=>{
+        e.preventDefault();
+        if(evtName === "dragover"){
+            fileDropLabel.classList.add("dragover");
+        } else {
+            fileDropLabel.classList.remove("dragover");
+        }
+    });
 });
 
-document
-.getElementById("submitCertificate")
-.addEventListener("click",submitData);
-
-async function submitData(){
-
-const btn=document.getElementById("submitCertificate");
-
-btn.innerHTML="Submitting...";
-
-btn.disabled=true;
-
-const data={
-
-name:document.getElementById("studentName").value,
-
-class:document.getElementById("studentClass").value,
-
-section:document.getElementById("studentSection").value,
-
-mobile:document.getElementById("studentMobile").value,
-
-reference:document.getElementById("studentReference").value
-
-};
-
-try{
-
-const response=await fetch(SCRIPT_URL,{
-
-method:"POST",
-
-body:JSON.stringify(data)
-
+fileDropLabel.addEventListener("drop", (e)=>{
+    const dropped = e.dataTransfer.files[0];
+    if(dropped){
+        fileInput.files = e.dataTransfer.files;
+        setSelectedFile(dropped);
+    }
 });
 
-const result=await response.json();
+function fileToBase64(file){
+    return new Promise((resolve, reject)=>{
+        const reader = new FileReader();
+        reader.onload = ()=> resolve(reader.result.split(",")[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+    });
+}
 
-btn.innerHTML="Submitted ✔";
+/* ===============================
+   OPEN MODAL
+================================*/
 
-alert("Submission Successful!");
+function openSubmissionModal(e){
 
-modal.style.display="none";
+    if(e) e.preventDefault();
 
-}catch(err){
+    submissionModal.classList.add("active");
 
-alert("Submission Failed");
-
-btn.disabled=false;
-
-btn.innerHTML="Submit";
+    document.body.style.overflow="hidden";
 
 }
+
+/* ===============================
+   CLOSE MODAL
+================================*/
+
+function closeSubmissionModal(){
+
+    submissionModal.classList.remove("active");
+
+    document.body.style.overflow="";
+
+}
+
+openSubmissionBtn.addEventListener("click",openSubmissionModal);
+
+closeSubmissionBtn.addEventListener("click",closeSubmissionModal);
+
+cancelSubmissionBtn.addEventListener("click",closeSubmissionModal);
+
+submissionOverlay.addEventListener("click",closeSubmissionModal);
+
+/* ===============================
+   ESC KEY
+================================*/
+
+document.addEventListener("keydown",(e)=>{
+
+    if(e.key==="Escape"){
+
+        closeSubmissionModal();
+
+    }
+
+});
+
+/* ===============================
+   VALIDATION
+================================*/
+
+function validateForm(){
+
+    let valid=true;
+
+    document.querySelectorAll(".error").forEach(el=>el.classList.remove("error"));
+
+    const name=document.getElementById("studentName");
+    const cls=document.getElementById("studentClass");
+    const sec=document.getElementById("studentSection");
+    const mob=document.getElementById("studentMobile");
+    const ref=document.getElementById("studentReference");
+    const check=document.getElementById("confirmCompletion");
+
+    if(name.value.trim()==""){
+
+        name.classList.add("error");
+
+        valid=false;
+
+    }
+
+    if(cls.value==""){
+
+        cls.classList.add("error");
+
+        valid=false;
+
+    }
+
+    if(sec.value.trim()==""){
+
+        sec.classList.add("error");
+
+        valid=false;
+
+    }
+
+    if(!/^[0-9]{10}$/.test(mob.value)){
+
+        mob.classList.add("error");
+
+        valid=false;
+
+    }
+
+    if(ref.value.trim()==""){
+
+        ref.classList.add("error");
+
+        valid=false;
+
+    }
+
+    if(!check.checked){
+
+        alert("Please confirm that you completed all modules.");
+
+        valid=false;
+
+    }
+
+    const file=fileInput.files[0];
+
+    if(!file){
+
+        fileDropLabel.classList.add("error");
+
+        valid=false;
+
+    } else if(file.type!=="application/pdf"){
+
+        fileDropLabel.classList.add("error");
+
+        alert("Please upload your certificate as a PDF file.");
+
+        valid=false;
+
+    } else if(file.size > MAX_FILE_MB*1024*1024){
+
+        fileDropLabel.classList.add("error");
+
+        alert(`That file is too large. Please upload a PDF under ${MAX_FILE_MB}MB.`);
+
+        valid=false;
+
+    }
+
+    return valid;
+
+}
+
+/* ===============================
+   SUBMIT
+================================*/
+
+form.addEventListener("submit",async function(e){
+
+    e.preventDefault();
+
+    if(!validateForm()) return;
+
+    submitBtn.classList.add("loading");
+
+    submitBtn.disabled=true;
+
+    try{
+
+        const file=fileInput.files[0];
+
+        const fileData=await fileToBase64(file);
+
+        const data={
+
+            name:document.getElementById("studentName").value,
+
+            class:document.getElementById("studentClass").value,
+
+            section:document.getElementById("studentSection").value,
+
+            mobile:document.getElementById("studentMobile").value,
+
+            reference:document.getElementById("studentReference").value,
+
+            fileName:file.name,
+
+            mimeType:file.type,
+
+            fileData:fileData
+
+        };
+
+        const response=await fetch(SCRIPT_URL,{
+
+            method:"POST",
+
+            body:JSON.stringify(data)
+
+        });
+
+        const result=await response.json();
+
+        console.log(result);
+
+        if(result.status !== "success"){
+
+            throw new Error(result.message || "The server rejected the submission.");
+
+        }
+
+        form.style.display="none";
+
+        successScreen.classList.add("active");
+
+        if(typeof launchConfetti==="function"){
+
+            launchConfetti();
+
+        }
+
+        localStorage.setItem("certificateSubmitted","true");
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert("Unable to submit: " + (error.message || "Please try again."));
+
+        submitBtn.classList.remove("loading");
+
+        submitBtn.disabled=false;
+
+    }
+
+});
+
+/* ===============================
+   SUCCESS BUTTON
+================================*/
+
+doneBtn.addEventListener("click",()=>{
+
+    form.reset();
+
+    setSelectedFile(null);
+
+    form.style.display="flex";
+
+    successScreen.classList.remove("active");
+
+    submitBtn.disabled=false;
+
+    submitBtn.classList.remove("loading");
+
+    closeSubmissionModal();
+
+});
+
+/* ===============================
+   DUPLICATE SUBMISSION
+================================*/
+
+if(localStorage.getItem("certificateSubmitted")){
+
+    openSubmissionBtn.innerHTML=`
+
+    <div class="action-icon">
+
+        <i class="fa-solid fa-circle-check"></i>
+
+    </div>
+
+    <h3>Certificate Submitted</h3>
+
+    <p>Your submission has already been recorded.</p>
+
+    <span class="action-go">
+
+        Verified ✔
+
+    </span>
+
+    `;
 
 }
