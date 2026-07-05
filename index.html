@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyber Security Awareness Workshop | Community Development Project</title>
+<meta name="description" content="Cyber Security Awareness Workshop — a Community Development Project by Ketan Yadav, B.Tech CSE (AI/ML). Learn, protect, and stay cyber smart.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Fraunces:ital,opsz,wght@1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="projector-wide">
+
+<!-- ============ LOADER ============ -->
+<div class="loader" id="loader">
+  <div class="loader-inner">
+    <div class="loader-mark">CS<span>//</span>AW</div>
+    <div class="loader-bar"><div class="loader-bar-fill" id="loaderBarFill"></div></div>
+    <div class="loader-text">BOOTING SECURE SESSION</div>
+  </div>
+</div>
+
+<div class="scroll-progress"><div class="scroll-progress-fill" id="scrollProgressFill"></div></div>
+
+<!-- ============ THREAT TICKER ============ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="tickerTrack">
+    <span class="ticker-item"><i class="fa-solid fa-triangle-exclamation"></i> PHISHING EMAIL FLAGGED &amp; BLOCKED</span>
+    <span class="ticker-item ticker-dot">/</span>
+    <span class="ticker-item"><i class="fa-solid fa-qrcode"></i> FAKE QR CODE REPORTED AT COUNTER</span>
+    <span class="ticker-item ticker-dot">/</span>
+    <span class="ticker-item"><i class="fa-solid fa-masks-theater"></i> AI VOICE-CLONE CALL DETECTED</span>
+    <span class="ticker-item ticker-dot">/</span>
+    <span class="ticker-item"><i class="fa-solid fa-wifi"></i> ROGUE PUBLIC WIFI HOTSPOT AVOIDED</span>
+    <span class="ticker-item ticker-dot">/</span>
+    <span class="ticker-item"><i class="fa-solid fa-key"></i> WEAK PASSWORD UPGRADED</span>
+    <span class="ticker-item ticker-dot">/</span>
+    <span class="ticker-item"><i class="fa-solid fa-cart-shopping"></i> FAKE SHOPPING SITE EXPOSED</span>
+  </div>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="#hero" class="nav-logo">
+      <span class="logo-badge">CS<span>//</span>AW</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#actions" class="nav-link">Start Workshop</a>
+      <a href="#safety" class="nav-link">Threats</a>
+      <a href="#labs" class="nav-link">Scam Labs</a>
+      <a href="#progress" class="nav-link">Progress</a>
+      <a href="#faq" class="nav-link">FAQ</a>
+    </div>
+    <div class="nav-actions-wrap" style="display:flex; align-items:center; gap:12px;">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+      <a href="https://cybersmart.wnscaresfoundation.org/Students/index" target="_blank" rel="noopener" class="nav-cta">Open WNS Portal <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="hero">
+  <div class="hero-container">
+    <div class="hero-copy">
+      <div class="sticker sticker-tag" data-aos="fade-down">COMMUNITY DEVELOPMENT PROJECT</div>
+      <h1 class="hero-title" data-aos="fade-up" data-aos-delay="60">
+        Don't get<br>
+        <em>hacked.</em> Get<br>
+        <span class="hl-mark">cyber&nbsp;smart.</span>
+      </h1>
+      <p class="hero-sub" data-aos="fade-up" data-aos-delay="120">
+        <span id="typedText"></span><span class="typed-cursor">_</span>
+      </p>
+      <p class="hero-desc" data-aos="fade-up" data-aos-delay="160">
+        Complete the WNS CyberSmart workshop, download your certificate, and submit it below. Takes about 60 minutes.
+      </p>
+
+      <!-- Compact step strip -->
+      <div class="step-strip" data-aos="fade-up" data-aos-delay="200">
+        <div class="step-item">
+          <span class="step-num">01</span>
+          <span class="step-txt">Open WNS Portal</span>
+        </div>
+        <i class="fa-solid fa-arrow-right step-arrow"></i>
+        <div class="step-item">
+          <span class="step-num">02</span>
+          <span class="step-txt">Complete Modules</span>
+        </div>
+        <i class="fa-solid fa-arrow-right step-arrow"></i>
+        <div class="step-item">
+          <span class="step-num">03</span>
+          <span class="step-txt">Submit Certificate</span>
+        </div>
+      </div>
+
+      <div class="hero-actions" data-aos="fade-up" data-aos-delay="240">
+        <a href="#actions" rel="noopener" class="btn btn-volt ripple">Get Started -><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        <a href="#labs" id="playLabsBtn" class="btn btn-riot ripple">Play Labs <i class="fa-solid fa-play"></i></a>
+      </div>
+
+      <div class="hero-host" data-aos="fade-up" data-aos-delay="280">
+        <div class="host-avatar"><i class="fa-solid fa-user-shield"></i></div>
+        <div>
+          <div class="host-name">Ketan Yadav</div>
+          <div class="host-role">B.Tech CSE (AI/ML) &middot; Workshop Conductor</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual" data-aos="fade-up" data-aos-delay="120">
+      <div class="hero-labs-panel" id="labs">
+        <div class="hero-labs-header">
+          <span class="eyebrow-labs"><i class="fa-solid fa-flask"></i> SCAM LAB</span>
+          <div class="tabs-control" id="labTabs">
+            <button class="tab-btn active" data-tab="phish">Spot the Phish</button>
+            <button class="tab-btn" data-tab="password">Password Entropy</button>
+          </div>
+        </div>
+
+        <!-- Phishing Simulator -->
+        <div class="lab-panel active" id="panel-phish">
+          <div class="lab-instruction">
+            <p><i class="fa-solid fa-circle-info"></i> Click on the <strong>three (3) red flags</strong> hidden in the email below.</p>
+          </div>
+
+          <div class="email-client">
+            <div class="email-window-header">
+              <div class="terminal-dots">
+                <span class="terminal-dot dot-red"></span>
+                <span class="terminal-dot dot-yellow"></span>
+                <span class="terminal-dot dot-green"></span>
+              </div>
+              <span class="email-window-title">College Mail Client v1.2</span>
+            </div>
+            <div class="email-headers">
+              <div class="email-header-line">
+                <span class="lbl">From:</span>
+                <span class="val phishing-target" id="target-sender" data-reason="Fake domain! Real college emails use '.edu' or the official college domain — not 'collegemail-support.com'.">
+                  Placement Cell &lt;verify@collegemail-support.com&gt;
+                </span>
+              </div>
+              <div class="email-header-line">
+                <span class="lbl">To:</span> <span class="val">student-pool@campus.edu</span>
+              </div>
+              <div class="email-header-line">
+                <span class="lbl">Subject:</span> <span class="val" style="font-weight:700;">[URGENT] Verify Placement Registration</span>
+              </div>
+            </div>
+            <div class="email-external-warning">
+              <i class="fa-solid fa-triangle-exclamation"></i> EXTERNAL EMAIL: Verify sender before clicking.
+            </div>
+            <div class="email-body">
+              <p>Dear Student, a database mismatch was found in your record.
+                <span class="phishing-target" id="target-urgency" data-reason="Fake urgency! Real placement processes never threaten deactivation on a 24-hour notice. This is a pressure tactic.">
+                  Verify within 24 hours or your placement registration will be permanently deactivated.
+                </span>
+              </p>
+              <p>Login here:
+                <span class="phishing-target email-link" id="target-link" data-reason="Raw IP address! Legitimate college portals use official HTTPS domain names — not bare IP addresses like '192.168.1.105'.">
+                  http://192.168.1.105/login/placement-verify
+                </span>
+              </p>
+            </div>
+          </div>
+
+          <div class="phish-status-bar">
+            <div class="phish-score">FLAGS: <span id="phishCount">0</span> / 3</div>
+            <div class="phish-success-badge" id="phishSuccess">
+              <i class="fa-solid fa-shield-halved"></i> PHISHING SHIELD ACTIVATED!
+            </div>
+          </div>
+          <div class="phish-feedback-box" id="phishFeedback">Click a suspicious item to inspect it.</div>
+        </div>
+
+        <!-- Password Entropy -->
+        <div class="lab-panel" id="panel-password">
+          <div class="password-tester-layout">
+            <div class="tester-input-sec">
+              <label for="pwdInput" class="tester-label">Enter a mock password:</label>
+              <div class="pwd-input-wrap">
+                <i class="fa-solid fa-lock input-lock"></i>
+                <input type="password" id="pwdInput" class="pwd-input" placeholder="Type a password..." autocomplete="off">
+                <button class="pwd-toggle" id="pwdToggle" aria-label="Show password"><i class="fa-solid fa-eye"></i></button>
+              </div>
+              <div class="strength-meter">
+                <div class="strength-bar-track">
+                  <div class="strength-bar-fill" id="strengthBar"></div>
+                </div>
+                <div class="strength-label" id="strengthText">Strength: Empty</div>
+              </div>
+              <div class="entropy-card">
+                <div class="entropy-title">Time to Crack:</div>
+                <div class="entropy-val" id="crackTime">Instant</div>
+                <div class="entropy-note">GPU brute-force estimate.</div>
+              </div>
+            </div>
+            <div class="tester-rules-sec">
+              <h4 style="font-family:var(--font-display); text-transform:uppercase; margin-top:0; letter-spacing:0.5px; font-size:.8rem;">Checklist:</h4>
+              <ul class="rules-list">
+                <li id="rule-length"><i class="fa-solid fa-circle-xmark"></i> 12+ characters</li>
+                <li id="rule-upper"><i class="fa-solid fa-circle-xmark"></i> Uppercase letters</li>
+                <li id="rule-lower"><i class="fa-solid fa-circle-xmark"></i> Lowercase letters</li>
+                <li id="rule-number"><i class="fa-solid fa-circle-xmark"></i> Numbers</li>
+                <li id="rule-symbol"><i class="fa-solid fa-circle-xmark"></i> Symbols</li>
+              </ul>
+              <div class="rules-tip">
+                <strong>Pro-Tip:</strong> Random words like <code>correct horse battery staple</code> are easier to remember and harder to crack.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+
+<main>
+
+<!-- ============ IMPORTANT ACTIONS ============ -->
+<section class="section section-ink" id="actions">
+  <div class="container">
+    <div class="section-head" data-aos="fade-up">
+      <span class="eyebrow eyebrow-volt">Important Actions</span>
+      <h2 class="section-title section-title-light">Everything, <em>one tap away.</em></h2>
+    </div>
+    <div class="actions-progress" aria-label="Important actions progress" data-aos="fade-up" data-aos-delay="40">
+      <div class="actions-progress-ring" id="actionsProgressRing">
+        <span class="actions-progress-value" id="actionsProgressValue">0%</span>
+      </div>
+      <div class="actions-progress-text">Complete all 4 actions to reach 100%</div>
+    </div>
+    <div class="actions-grid">
+      <a href="https://cybersmart.wnscaresfoundation.org/Students/index" target="_blank" rel="noopener" id="portalAction" data-progress-step="portal" class="action-card action-card-primary tilt-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="action-icon"><i class="fa-solid fa-globe"></i></div>
+        <h3>Go to WNS Portal</h3>
+        <p>Register and complete every module here. Start here first.</p>
+        <span class="action-go">Open Portal <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+      </a>
+      <a href="#" rel="noopener" id="certificateAction" data-progress-step="certificate" class="action-card action-card-riot tilt-card" data-aos="fade-up" data-aos-delay="80">
+        <div class="action-icon"><i class="fa-solid fa-paper-plane"></i></div>
+        <h3>Submit Certificate</h3>
+        <p>Upload your certificate + Reference ID to complete the workshop.</p>
+        <span class="action-go">Submit <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a href="#labs" rel="noopener" id="labsAction" data-progress-step="labs" class="action-card tilt-card" data-aos="fade-up" data-aos-delay="160">
+        <div class="action-icon"><i class="fa-solid fa-display"></i></div>
+        <h3>Play Labs Section</h3>
+        <p>Open the scam labs and practice spotting red flags.</p>
+        <span class="action-go">Play <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a href="#" rel="noopener" id="presentationAction" data-progress-step="presentation" class="action-card tilt-card" data-aos="fade-up" data-aos-delay="240">
+        <div class="action-icon"><i class="fa-solid fa-file-pdf"></i></div>
+        <h3>Presentation Download</h3>
+        <p>Download the presentation deck for quick revision.</p>
+        <span class="action-go">Download <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </div>
+  </div>
+
+  
+</section>
+
+<!-- ============ CYBER SAFETY (TABBED) ============ -->
+<section class="section" id="safety">
+  <div class="container">
+    <div class="section-head" data-aos="fade-up">
+      <span class="eyebrow eyebrow-riot">Know Your Enemy</span>
+      <h2 class="section-title">Pick a threat. <em>Learn the tell.</em></h2>
+    </div>
+
+    <div class="tabs" id="safetyTabs">
+      <button class="tab-btn active" data-tab="all">All Threats</button>
+      <button class="tab-btn" data-tab="online">Online Scams</button>
+      <button class="tab-btn" data-tab="access">Access &amp; Devices</button>
+      <button class="tab-btn" data-tab="social">Social &amp; People</button>
+    </div>
+
+    <div class="safety-grid" id="safetyGrid">
+      <div class="safety-card tilt-card" data-cat="access" data-aos="fade-up" data-aos-delay="0">
+        <span class="safety-tag">Access</span>
+        <div class="safety-icon"><i class="fa-solid fa-key"></i></div>
+        <h3>Strong Passwords</h3>
+        <p>Long passphrases beat short complex ones. A password manager beats memory, every time.</p>
+      </div>
+      <div class="safety-card tilt-card" data-cat="social" data-aos="fade-up" data-aos-delay="60">
+        <span class="safety-tag">Social</span>
+        <div class="safety-icon"><i class="fa-solid fa-hashtag"></i></div>
+        <h3>Social Media Safety</h3>
+        <p>Lock down what strangers can see — location tags are the easiest leak there is.</p>
+      </div>
+      <div class="safety-card tilt-card" data-cat="online" data-aos="fade-up" data-aos-delay="120">
+        <span class="safety-tag">Online</span>
+        <div class="safety-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+        <h3>Phishing</h3>
+        <p>Urgency plus a link is the classic combo. Check the sender's real address first.</p>
+      </div>
+      <div class="safety-card tilt-card" data-cat="online" data-aos="fade-up" data-aos-delay="180">
+        <span class="safety-tag">Online</span>
+        <div class="safety-icon"><i class="fa-solid fa-qrcode"></i></div>
+        <h3>QR Code Scams</h3>
+        <p>A pasted-over QR code at a counter can quietly redirect payments to a stranger.</p>
+      </div>
+      <div class="safety-card tilt-card" data-cat="online" data-aos="fade-up" data-aos-delay="0">
+        <span class="safety-tag">Online</span>
+        <div class="safety-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+        <h3>Fake Shopping Websites</h3>
+        <p>Unbelievable discounts, zero reviews, wallet-only checkout — all red flags.</p>
+      </div>
+      <div class="safety-card tilt-card" data-cat="social" data-aos="fade-up" data-aos-delay="60">
+        <span class="safety-tag">Social</span>
+        <div class="safety-icon"><i class="fa-solid fa-comment-slash"></i></div>
+        <h3>Cyberbullying</h3>
+        <p>Screenshot, block, report — silence protects the bully, not the target.</p>
+      </div>
+      <div class="safety-card tilt-card" data-cat="access" data-aos="fade-up" data-aos-delay="120">
+        <span class="safety-tag">Access</span>
+        <div class="safety-icon"><i class="fa-solid fa-wifi"></i></div>
+        <h3>Public WiFi</h3>
+        <p>Open networks can be watched by anyone on them. Save banking for trusted data.</p>
+      </div>
+      <div class="safety-card tilt-card" data-cat="online" data-aos="fade-up" data-aos-delay="180">
+        <span class="safety-tag">Online</span>
+        <div class="safety-icon"><i class="fa-solid fa-masks-theater"></i></div>
+        <h3>AI Deepfake Scams</h3>
+        <p>A familiar voice asking for urgent money is now trivial to fake — always verify another way.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROGRESS + FAQ (SPLIT) ============ -->
+<section class="section section-ink" id="progress">
+  <div class="container">
+    <div class="progress-faq-layout">
+
+      <!-- Progress Tracker
+      <div class="progress-col" data-aos="fade-right">
+        <span class="eyebrow eyebrow-riot">Progress Tracker</span>
+        <h2 class="section-title section-title-light" style="margin-bottom:8px;">Track the <em>4 linked steps.</em></h2>
+        <p class="section-sub section-sub-light" style="margin-bottom:20px;">Each step jumps to the matching action card and saves on your device.</p>
+
+        <div class="progress-panel">
+          <div class="progress-ring-wrap">
+            <svg class="progress-ring" viewBox="0 0 140 140">
+              <circle class="progress-ring-track" cx="70" cy="70" r="60"/>
+              <circle class="progress-ring-bar" id="progressRingBar" cx="70" cy="70" r="60"/>
+            </svg>
+            <div class="progress-ring-label"><span id="progressPercent">0%</span><small>DONE</small></div>
+          </div>
+          <ol class="progress-steps" id="checklist">
+            <li class="checklist-item progress-step" data-key="portal">
+              <label class="progress-step-main" for="step-portal">
+                <input type="checkbox" id="step-portal">
+                <span class="check-box"><i class="fa-solid fa-check"></i></span>
+                <span class="progress-step-copy">
+                  <span class="progress-step-num">01</span>
+                  <span class="progress-step-title">Go to WNS Portal</span>
+                  <span class="progress-step-desc">Open the workshop portal to begin.</span>
+                </span>
+              </label>
+              <a class="progress-step-link" href="#portalAction">Open action <i class="fa-solid fa-arrow-right"></i></a>
+            </li>
+            <li class="checklist-item progress-step" data-key="certificate">
+              <label class="progress-step-main" for="step-certificate">
+                <input type="checkbox" id="step-certificate">
+                <span class="check-box"><i class="fa-solid fa-check"></i></span>
+                <span class="progress-step-copy">
+                  <span class="progress-step-num">02</span>
+                  <span class="progress-step-title">Submit Certificate</span>
+                  <span class="progress-step-desc">Upload the certificate and reference ID.</span>
+                </span>
+              </label>
+              <a class="progress-step-link" href="#certificateAction">Open action <i class="fa-solid fa-arrow-right"></i></a>
+            </li>
+            <li class="checklist-item progress-step" data-key="labs">
+              <label class="progress-step-main" for="step-labs">
+                <input type="checkbox" id="step-labs">
+                <span class="check-box"><i class="fa-solid fa-check"></i></span>
+                <span class="progress-step-copy">
+                  <span class="progress-step-num">03</span>
+                  <span class="progress-step-title">Play Labs Section</span>
+                  <span class="progress-step-desc">Test yourself in the scam labs.</span>
+                </span>
+              </label>
+              <a class="progress-step-link" href="#labsAction">Open action <i class="fa-solid fa-arrow-right"></i></a>
+            </li>
+            <li class="checklist-item progress-step" data-key="presentation">
+              <label class="progress-step-main" for="step-presentation">
+                <input type="checkbox" id="step-presentation">
+                <span class="check-box"><i class="fa-solid fa-check"></i></span>
+                <span class="progress-step-copy">
+                  <span class="progress-step-num">04</span>
+                  <span class="progress-step-title">Presentation Download</span>
+                  <span class="progress-step-desc">Grab the deck for revision.</span>
+                </span>
+              </label>
+              <a class="progress-step-link" href="#presentationAction">Open action <i class="fa-solid fa-arrow-right"></i></a>
+            </li>
+          </ol>
+          <button class="btn btn-outline btn-small" id="resetProgress"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
+        </div>
+      </div> -->
+
+      <!-- FAQ -->
+      <div class="faq-col" data-aos="fade-left">
+        <span class="eyebrow eyebrow-volt">Questions</span>
+        <h2 class="section-title section-title-light" style="margin-bottom:24px;">Frequently <em>asked.</em></h2>
+        <div class="accordion" id="accordion">
+          <div class="accordion-item" data-aos="fade-up">
+            <button class="accordion-trigger"><span>How many modules are there?</span><i class="fa-solid fa-plus"></i></button>
+            <div class="accordion-panel"><p>Eight modules, one for each threat category in the Threats section above.</p></div>
+          </div>
+          <div class="accordion-item" data-aos="fade-up">
+            <button class="accordion-trigger"><span>How long does it take?</span><i class="fa-solid fa-plus"></i></button>
+            <div class="accordion-panel"><p>60–90 minutes for every module and quiz if you do it in one sitting.</p></div>
+          </div>
+          <div class="accordion-item" data-aos="fade-up">
+            <button class="accordion-trigger"><span>Where do I find my certificate?</span><i class="fa-solid fa-plus"></i></button>
+            <div class="accordion-panel"><p>Once every module and quiz is marked complete, a "Download Certificate" button appears on your dashboard.</p></div>
+          </div>
+          <div class="accordion-item" data-aos="fade-up">
+            <button class="accordion-trigger"><span>What is the Reference ID?</span><i class="fa-solid fa-plus"></i></button>
+            <div class="accordion-panel"><p>The unique code printed on your certificate — you'll need it when submitting below.</p></div>
+          </div>
+          <div class="accordion-item" data-aos="fade-up">
+            <button class="accordion-trigger"><span>How do I submit my certificate?</span><i class="fa-solid fa-plus"></i></button>
+            <div class="accordion-panel"><p>Use the "Submit Certificate" card in the Take Action section above — it opens a short form for your file and Reference ID.</p></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ BOTTOM TICKER ============ -->
+<div class="ticker ticker-volt" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item">STAY CYBER SMART</span><span class="ticker-item ticker-dot">/</span>
+    <span class="ticker-item">LEARN</span><span class="ticker-item ticker-dot">/</span>
+    <span class="ticker-item">PROTECT</span><span class="ticker-item ticker-dot">/</span>
+    <span class="ticker-item">STAY CYBER SMART</span><span class="ticker-item ticker-dot">/</span>
+    <span class="ticker-item">LEARN</span><span class="ticker-item ticker-dot">/</span>
+    <span class="ticker-item">PROTECT</span><span class="ticker-item ticker-dot">/</span>
+  </div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer-container">
+    <div class="footer-brand">
+      <span class="logo-badge">CS<span>//</span>AW</span>
+      <div>
+        <div class="footer-title">Cyber Security Awareness Workshop</div>
+        <div class="footer-sub">Community Development Project</div>
+      </div>
+    </div>
+    <div class="footer-made">Made with <i class="fa-solid fa-heart"></i> by <span>Ketan Yadav</span></div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+<canvas id="confettiCanvas" class="confetti-canvas"></canvas>
+
+<!-- Submit Certificate Modal -->
+
+<div id="submitModal" class="submit-modal">
+
+<div class="submit-box">
+
+<h2>Submit Certificate</h2>
+
+<p>Please enter your details below.</p>
+
+<input id="studentName" placeholder="Full Name">
+
+<select id="studentClass">
+<option value="">Select Class</option>
+<option>9</option>
+<option>11</option>
+</select>
+
+<input id="studentSection" placeholder="Section">
+
+<input id="studentMobile" placeholder="Mobile Number">
+
+<input id="studentReference" placeholder="Certificate Reference ID">
+
+<div class="modal-buttons">
+
+<button id="closeModal">
+Cancel
+</button>
+
+<button id="submitCertificate">
+Submit
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.1.0/typed.umd.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
