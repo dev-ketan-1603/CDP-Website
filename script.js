@@ -819,6 +819,7 @@ function validateForm(){
     const name=document.getElementById("studentName");
     const cls=document.getElementById("studentClass");
     const sec=document.getElementById("studentSection");
+    const house=document.getElementById("studentHouse");
     const mob=document.getElementById("studentMobile");
     const email=document.getElementById("studentEmail");
     const ref=document.getElementById("studentReference");
@@ -843,6 +844,14 @@ function validateForm(){
     if(sec.value.trim()==""){
 
         sec.classList.add("error");
+
+        valid=false;
+
+    }
+
+    if(house.value.trim()==""){
+
+        house.classList.add("error");
 
         valid=false;
 
@@ -937,6 +946,8 @@ form.addEventListener("submit",async function(e){
             class:document.getElementById("studentClass").value,
 
             section:document.getElementById("studentSection").value,
+
+            house:document.getElementById("studentHouse").value.trim(),
 
             mobile:document.getElementById("studentMobile").value,
 
