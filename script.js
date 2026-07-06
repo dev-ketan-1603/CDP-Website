@@ -820,6 +820,7 @@ function validateForm(){
     const cls=document.getElementById("studentClass");
     const sec=document.getElementById("studentSection");
     const mob=document.getElementById("studentMobile");
+    const email=document.getElementById("studentEmail");
     const ref=document.getElementById("studentReference");
     const check=document.getElementById("confirmCompletion");
 
@@ -850,6 +851,14 @@ function validateForm(){
     if(!/^[0-9]{10}$/.test(mob.value)){
 
         mob.classList.add("error");
+
+        valid=false;
+
+    }
+
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())){
+
+        email.classList.add("error");
 
         valid=false;
 
@@ -930,6 +939,8 @@ form.addEventListener("submit",async function(e){
             section:document.getElementById("studentSection").value,
 
             mobile:document.getElementById("studentMobile").value,
+
+            email:document.getElementById("studentEmail").value.trim(),
 
             reference:document.getElementById("studentReference").value,
 
