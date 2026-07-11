@@ -27,7 +27,7 @@ A single-page, interactive front-end for a **Community Development Project (CDP)
 
 ### 🔐 Password Entropy Lab
 
-<img src="images/password-entropy.png" width="1000">
+<img src="images/password-enthropy.png" width="1000">
 
 ---
 
