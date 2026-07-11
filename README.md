@@ -2,7 +2,7 @@
 
 A single-page, interactive front-end for a **Community Development Project (CDP)** cyber security awareness workshop. Visitors learn to spot common online threats, test password strength, complete an external training portal, and submit their completion certificate — all without needing to create an account.
 
-**Live demo:** _add your hosted link here_
+**Live demo:** (https://dev-ketan-1603.github.io/CDP-Website/)
 
 ---
 ## 📸 Screenshots
