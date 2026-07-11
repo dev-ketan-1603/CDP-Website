@@ -5,7 +5,37 @@ A single-page, interactive front-end for a **Community Development Project (CDP)
 **Live demo:** _add your hosted link here_
 
 ---
+## 📸 Screenshots
 
+### 🏠 Homepage
+
+<img src="images/home.png" width="1000">
+
+---
+
+### 🛡️ Threat Explorer
+
+<img src="images/threats.png" width="1000">
+
+---
+
+### 🎣 Phishing Lab
+
+<img src="images/phishing-lab.png" width="1000">
+
+---
+
+### 🔐 Password Entropy Lab
+
+<img src="images/password-entropy.png" width="1000">
+
+---
+
+### 📄 Certificate Submission
+
+<p align="center">
+<img src="images/form.png" width="350">
+</p>
 ## Features
 
 - **Threat ticker & scam labs** — an interactive phishing-email simulator (click the red flags) and a live password-entropy/strength tester
