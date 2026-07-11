@@ -1,150 +1,284 @@
-# Cyber Security Awareness Workshop
+<div align="center">
 
-A single-page, interactive front-end for a **Community Development Project (CDP)** cyber security awareness workshop. Visitors learn to spot common online threats, test password strength, complete an external training portal, and submit their completion certificate — all without needing to create an account.
+# 🛡️ Cyber Security Awareness Workshop
 
-**Live demo:** (https://dev-ketan-1603.github.io/CDP-Website/)
+### Interactive Cyber Security Awareness Platform built for a Community Development Project (CDP)
+
+[![HTML](https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=html5&logoColor=white)]()
+[![CSS](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white)]()
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)]()
+[![GitHub Pages](https://img.shields.io/badge/Deployed-GitHub%20Pages-success?style=for-the-badge)]()
+
+### 🌐 Live Demo
+
+https://dev-ketan-1603.github.io/CDP-Website/
+
+</div>
 
 ---
-## 📸 Screenshots
 
-### 🏠 Homepage
+## 🎯 About the Project
+
+This project was developed as part of a **Community Development Project (CDP)** to simplify the delivery of cybersecurity awareness workshops in schools.
+
+The platform combines educational content, interactive scam labs, and certificate submission into a single, easy-to-use website. Students complete the official WNS CyberSmart workshop, explore common cyber threats through interactive activities, and submit their completion certificate—all without creating an account.
+
+---
+
+# 📸 Screenshots
+
+## 🏠 Homepage
 
 <img src="images/home.png" width="1000">
 
 ---
 
-### 🛡️ Threat Explorer
+## 🛡️ Threat Explorer
 
 <img src="images/threats.png" width="1000">
 
 ---
 
-### 🎣 Phishing Lab
+## 🎣 Phishing Lab
 
 <img src="images/phishing-lab.png" width="1000">
 
 ---
 
-### 🔐 Password Entropy Lab
+## 🔐 Password Entropy Lab
 
 <img src="images/password-enthropy.png" width="1000">
 
 ---
 
-### 📄 Certificate Submission
+## 📄 Certificate Submission
 
 <p align="center">
 <img src="images/form.png" width="350">
 </p>
-## Features
-
-- **Threat ticker & scam labs** — an interactive phishing-email simulator (click the red flags) and a live password-entropy/strength tester
-- **Threat library** — a filterable grid of common scams (phishing, QR code scams, deepfakes, public WiFi risks, cyberbullying, etc.)
-- **Action center** — quick links to the external training portal, the scam labs, and the presentation deck
-- **Certificate submission** — a themed modal form where students upload their completed certificate (PDF) along with their details; submissions are logged and files stored with **no login required**
-- **Dark / light theme toggle**
-- **Responsive design**, built mobile-first with a distinct neo-brutalist visual style (hard shadows, high-contrast palette, monospace accents)
 
 ---
 
-## Tech Stack
+# ✨ Features
 
-- Plain **HTML / CSS / JavaScript** — no framework, no build step
-- [AOS](https://michalsnik.github.io/aos/) for scroll animations
-- [Vanilla-Tilt.js](https://micku7zu.github.io/vanilla-tilt.js/) for card tilt effects
-- [Typed.js](https://github.com/mattboldt/typed.js/) for the hero typing effect
-- [Font Awesome](https://fontawesome.com/) for icons
-- **Google Apps Script** as a free, serverless backend (Google Sheets + Google Drive) for certificate submissions
+- 🛡️ Interactive phishing email simulator
+- 🔐 Live password strength & entropy checker
+- 📚 Threat library covering common cyber scams
+- 🎮 Hands-on scam labs for practical learning
+- 📤 Certificate submission with PDF upload
+- ☁️ Google Sheets + Google Drive integration
+- 🌙 Dark / Light mode
+- 📱 Fully responsive design
+- ⚡ Smooth animations and modern Neo-Brutalist UI
+- 🚀 GitHub Pages deployment
 
 ---
 
-## Project Structure
+# 🛠️ Tech Stack
 
-```
+### Frontend
+
+- HTML5
+- CSS3
+- JavaScript (Vanilla)
+
+### Libraries
+
+- AOS (Animate On Scroll)
+- Vanilla-Tilt.js
+- Typed.js
+- Font Awesome
+
+### Backend
+
+- Google Apps Script
+- Google Sheets
+- Google Drive
+
+---
+
+# 📂 Project Structure
+
+```text
 .
-├── index.html                      # Markup for all sections + certificate modal
-├── styles.css                      # All styling, theme tokens, responsive rules
-├── script.js                       # UI interactions + certificate submission logic
-└── apps-script-upload-addition.gs  # Backend script (paste into Google Apps Script)
+├── images/
+│   ├── home.png
+│   ├── threats.png
+│   ├── phishing-lab.png
+│   ├── password-entropy.png
+│   └── form.png
+│
+├── index.html
+├── styles.css
+├── script.js
+├── apps-script-upload-addition.gs
+└── README.md
 ```
 
 ---
 
-## Getting Started
+# 🚀 Getting Started
 
-1. Clone or download this repository.
-2. Open `index.html` directly in a browser — no server or build step needed for the front-end alone.
-3. To enable certificate submissions (form upload → Google Sheet + Drive), follow the backend setup below.
+Clone the repository
+
+```bash
+git clone https://github.com/dev-ketan-1603/CDP-Website.git
+```
+
+Open the project
+
+```text
+index.html
+```
+
+No build tools or installation required.
 
 ---
 
-## Certificate Submission Backend Setup
+# ☁️ Certificate Submission Backend
 
-Submissions are handled by a Google Apps Script web app, so there's no server to host and no login required for visitors.
+Certificate submissions are powered by **Google Apps Script**, allowing students to upload their certificates without authentication.
 
-> ⚠️ Use a Google account dedicated to this project (with a recovery phone/email added) rather than a personal or throwaway account — new/unverified accounts can hit Drive permission errors, and a suspended account would take the whole system down with it.
+## 1️⃣ Create a Google Sheet
 
-### 1. Create a Google Sheet
-Create a spreadsheet with a header row: `Timestamp | Name | Class | Section | Mobile | Reference | Certificate Link`
+Create a spreadsheet with the following columns:
 
-### 2. Create a Google Drive folder
-Create a folder to store uploaded certificates, and copy its **Folder ID** from the URL (`.../folders/<FOLDER_ID>`).
+```text
+Timestamp | Name | Class | Section | Mobile | Reference | Certificate Link
+```
 
-### 3. Add the backend script
-In the Sheet, go to **Extensions → Apps Script**, paste in the contents of `apps-script-upload-addition.gs`, and set:
+---
+
+## 2️⃣ Create a Google Drive Folder
+
+Create a folder to store uploaded certificates and copy its **Folder ID** from the URL.
+
+---
+
+## 3️⃣ Configure Apps Script
+
+Open:
+
+```text
+Extensions → Apps Script
+```
+
+Paste the contents of
+
+```text
+apps-script-upload-addition.gs
+```
+
+Update:
+
 ```javascript
-const CERTIFICATE_FOLDER_ID = "your-folder-id-here";
+const CERTIFICATE_FOLDER_ID = "YOUR_FOLDER_ID";
 ```
-Make sure the sheet name referenced in the script (`getSheetByName("Sheet1")`) matches your actual tab name.
 
-### 4. Deploy
-**Deploy → New deployment → Web app**, with:
-- **Execute as:** Me
-- **Who has access:** Anyone
+Make sure
 
-Copy the resulting web app URL.
-
-### 5. Connect the front-end
-In `script.js`, set:
 ```javascript
-const SCRIPT_URL = "your-deployed-web-app-url-here";
+getSheetByName("Sheet1")
 ```
 
-### 6. Test
-Submit the form with a sample PDF and confirm a new row appears in the Sheet with a working Drive link.
+matches your sheet name.
 
 ---
 
-## Customization
+## 4️⃣ Deploy
 
-Theme colors, fonts, and shadows are controlled via CSS variables at the top of `styles.css`:
+Deploy the script as a **Web App**
+
+```text
+Execute as:
+Me
+
+Who has access:
+Anyone
+```
+
+Copy the deployment URL.
+
+---
+
+## 5️⃣ Connect the Frontend
+
+Inside
+
+```javascript
+script.js
+```
+
+replace
+
+```javascript
+const SCRIPT_URL = "YOUR_WEB_APP_URL";
+```
+
+---
+
+## 6️⃣ Test
+
+Submit a sample certificate and verify:
+
+- A new row is created in Google Sheets.
+- The uploaded PDF appears in Google Drive.
+- The Drive link is stored correctly.
+
+---
+
+# 🎨 Customization
+
+Theme colors are controlled using CSS variables.
 
 ```css
 :root{
-  --volt: #D4FF00;   /* accent 1 */
-  --riot: #FF4D6D;   /* accent 2 */
-  --signal: #4361FF; /* accent 3 */
-  ...
+  --volt:#D4FF00;
+  --riot:#FF4D6D;
+  --signal:#4361FF;
 }
 ```
-Swap these to re-theme the entire site consistently.
+
+Changing these values will automatically re-theme the website.
 
 ---
 
-## Known Limitations
+# ⚠️ Known Limitations
 
-- Duplicate-submission prevention uses `localStorage`, which a visitor can clear — it's a UX nicety, not a security control.
-- No CAPTCHA/rate-limiting is in place yet; add one if the form is exposed to spam.
-- Max upload size is capped client-side (and should be mirrored server-side) at 5MB to stay well under Apps Script's request size limits.
-
----
-
-## Author
-
-**Ketan Yadav** — B.Tech CSE (AI/ML), Workshop Conductor
+- Duplicate submission prevention uses Local Storage only.
+- No CAPTCHA or rate limiting.
+- Maximum upload size is 5 MB.
+- Google Apps Script request limits still apply.
 
 ---
 
-## License
+# 🚀 Future Improvements
 
-_Add a license (e.g. MIT) here if you intend to open-source this._
+- Admin dashboard
+- Workshop analytics
+- Leaderboard
+- Multi-language support
+- Email confirmation after submission
+- More interactive cyber security labs
+- Progress tracking for students
+
+---
+
+# 👨‍💻 Author
+
+**Ketan Yadav**
+
+🎓 B.Tech CSE (AI/ML)
+
+💻 Passionate about Full Stack Development & AI
+
+GitHub:
+https://github.com/dev-ketan-1603
+
+---
+
+# ⭐ Support
+
+If you found this project useful, consider giving it a ⭐ on GitHub.
+
+It helps others discover the project and motivates future improvements.
